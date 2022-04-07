@@ -1,11 +1,13 @@
-import { getCode } from '@/utils';
+import { getCode } from "@/utils/utils";
+// import { post } from '@/utils/request';
+// import Tab from './components/tab/index';
 // import Tab from '@/com/tab';
-import './index.less';
 
-const add = (a, b) => {
-	return a + b;
-};
+import "./index.less";
 
+// const y = (a, b) => {
+// 	return a + b;
+// };
+// post();
 
-console.log(add(1, 2));
 console.log(getCode());

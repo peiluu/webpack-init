@@ -53,6 +53,7 @@ module.exports = {
 			}
 		],
 	},
+	// 解析模块路径
 	resolve: {
 		alias: {
 			'@': path.join(__dirname, 'src'),

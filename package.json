@@ -1,23 +1,57 @@
 {
-  "scripts": {
-    "build": "webpack --mode=development",
-    "dev": "webpack ./src/inex.js -o build/build.js --mode=development --watch",
-    "start": "npx webpack-dev-server"
-  },
-  "dependencies": {
-    "css-loader": "^6.7.1",
-    "file-loader": "^6.2.0",
-    "html-loader": "^3.1.0",
-    "html-webpack-plugin": "^5.5.0",
-    "less": "^4.1.2",
-    "less-loader": "^10.2.0",
-    "style-loader": "^3.3.1",
-    "ts-loader": "^9.2.8",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.71.0",
-    "webpack-dev-server": "^4.8.0"
-  },
-  "devDependencies": {
-    "webpack-cli": "^4.9.2"
-  }
+	"name": "webpck-init",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "webpack --mode=development",
+		"dev": "webpack ./src/inex.js -o build/build.js --mode=development --watch",
+		"start": "npx webpack-dev-server",
+		"pre-commit": "lint-staged",
+		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"src/**/*.{html,json,js,jsx,ts,tsx}": [
+			"prettier --write",
+			"eslint --fix"
+		]
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"dependencies": {
+		"less": "^4.1.2"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.18.0",
+		"@typescript-eslint/parser": "^5.18.0",
+		"css-loader": "^6.7.1",
+		"eslint": "^8.0.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-typescript": "^2.7.1",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsx-a11y": "^6.4.1",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-react": "^7.29.4",
+		"eslint-plugin-react-hooks": "^4 || ^3 || ^2.3.0 || ^1.7.0",
+		"file-loader": "^6.2.0",
+		"html-loader": "^3.1.0",
+		"html-webpack-plugin": "^5.5.0",
+		"husky": "^7.0.4",
+		"less-loader": "^10.2.0",
+		"lint-staged": "^12.3.7",
+		"prettier": "^2.6.2",
+		"style-loader": "^3.3.1",
+		"stylelint": "^14.6.1",
+		"stylelint-config-prettier": "^9.0.3",
+		"stylelint-config-standard": "^25.0.0",
+		"stylelint-order": "^5.0.0",
+		"stylelint-prettier": "^2.0.0",
+		"ts-loader": "^9.2.8",
+		"typescript": "^4.6.3",
+		"url-loader": "^4.1.1",
+		"webpack": "^5.71.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.8.0"
+	}
 }
