@@ -5,9 +5,13 @@ import { getCode } from "@/utils/utils";
 
 import "./index.less";
 
-// const y = (a, b) => {
-// 	return a + b;
-// };
+const y = (a, b) => {
+	return a + b;
+};
+
+let a = 1;
 // post();
 
 console.log(getCode());
+console.log(getCode());
+//
