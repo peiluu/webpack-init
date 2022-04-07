@@ -6,7 +6,8 @@
 		"dev": "webpack ./src/inex.js -o build/build.js --mode=development --watch",
 		"start": "npx webpack-dev-server",
 		"pre-commit": "lint-staged",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"tets": "husky"
 	},
 	"lint-staged": {
 		"src/**/*.{html,json,js,jsx,ts,tsx}": [
