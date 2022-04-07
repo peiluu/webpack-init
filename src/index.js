@@ -1,4 +1,4 @@
-import { getCode } from "@/utils/utils";
+import * as utils from "@/utils/utils";
 
 // import { post } from '@/utils/request';
 // import Tab from './components/tab/index';
@@ -11,8 +11,7 @@ import { getCode } from "@/utils/utils";
 // };
 
 // const a = 1;
+
 // post();
 
-console.log(getCode());
-console.log(getCode());
-//
+console.log(utils.getCode());

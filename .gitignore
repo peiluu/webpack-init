@@ -1,7 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 # test merge
 /dist
-.idea
+# .idea
 node_modules
 yarn-error.log
 

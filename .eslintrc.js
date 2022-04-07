@@ -6,9 +6,11 @@ module.exports = {
     window: true,
     document: true,
   },
-  // parser: '@babel/eslint-parser',
+  // parser: "babel-eslint",
+  // typescript语法的解析器，类似于babel-eslint解析器一样。对应parserOptions的配置参考官方的README。
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "react"],
+
   parserOptions: {
     ecmaVersion: 2020,
     ecmaFeatures: {
@@ -22,6 +24,7 @@ module.exports = {
     node: true,
     es6: true,
   },
+  // eslint规则
   rules: {
     semi: [2, "always"],
     "import/no-unassigned-import": 0,

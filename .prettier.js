@@ -1,4 +1,5 @@
 
+// prettier配置 -- 和eslint相辅相承，lint规则以eslint为主，prettier类似于对eslint的补充
 module.exports = {
   "printWidth": 100, // 超过最大值换行
   "overrides": [
