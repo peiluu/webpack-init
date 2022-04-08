@@ -9,6 +9,13 @@
 </head>
 
 <body>
+  <script>
+    // 初始化配置
+    (() => {
+      const system_varsion = (location.search || '').replace(/\S*dev_ver=(\d{1}\.\d{2})\S*/, '$1') || '';
+      window.SYSTEM_VERSION = system_varsion;
+    })();
+  </script>
   <img src="./images/home.png">
   <!-- <h1 class="h1">这是一个标题<h1> -->
 </body>

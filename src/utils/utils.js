@@ -2,7 +2,7 @@
  * @description 输出工具类
  */
 
-export const getcode = () => {
+export const getCode = () => {
   return "return code";
 };
 

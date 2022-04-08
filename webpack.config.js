@@ -26,6 +26,14 @@ module.exports = {
     }),
   ],
 
+  // 解析模块路径
+  resolve: {
+    alias: {
+      "@": path.join(__dirname, "src"),
+      "@/com": path.join(__dirname, "src/components"),
+    },
+  },
+
   // 模块
   module: {
     // loader配置, 处理webpack不识别的资源（样式、图片）
@@ -53,13 +61,6 @@ module.exports = {
         loader: "html-loader",
       },
     ],
-  },
-  // 解析模块路径
-  resolve: {
-    alias: {
-      "@": path.join(__dirname, "src"),
-      "@/com": path.join(__dirname, "src/components"),
-    },
   },
 
   // 开发服务器配置, devServe用来自动化重载（自动刷新） -- 热重载

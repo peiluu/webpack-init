@@ -1,6 +1,11 @@
 {
 	"name": "webpck-init",
 	"version": "1.0.0",
+	"templateInfo": {
+		"name": "default",
+		"typescript": true,
+		"css": "less"
+	},
 	"scripts": {
 		"build": "webpack --mode=development",
 		"dev": "webpack ./src/inex.js -o build/build.js --mode=development --watch",
@@ -18,11 +23,12 @@
 	"husky": {
 		"hooks": {
 			"pre-commit": "npm run eslint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
 		}
 	},
 	"dependencies": {
-		"less": "^4.1.2"
+		"less": "^4.1.2",
+		"query-string": "^7.1.1"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.3",
