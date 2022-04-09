@@ -14,7 +14,8 @@ export function jsonToQueryString(json = {}) {
  * @description 封装公共请求
  */
 const request = async (url, options) => {
-  console.log(window.SYSTEM_VERSION);
+  console.log(window);
+  // 等待网络响应需要await一下
   const response = await fetch(
     `${url}${url.indexOf("?") > 0 ? "&" : "?"}dev_ver=${window.SYSTEM_VERSION}`,
     {
@@ -28,9 +29,11 @@ const request = async (url, options) => {
   );
 
   let data = {};
+  console.log(response);
   // 请求成功
   if (response.status >= 200 && response.status < 300) {
     try {
+      // 第二个promise等到body到来。
       data = await response.json();
     } catch (e) {
       data = {
@@ -68,11 +71,11 @@ export const post = (url, param) => {
 };
 
 /**
- * @description GET请求
+ * @description GET请求，不需要请求体
  */
-export const getCode = (url, param) => {
+export const get = (url) => {
   request(url, {
     method: "GET",
-    body: jsonToQueryString({ ...param }),
+    // body: jsonToQueryString({ ...param }),
   });
 };

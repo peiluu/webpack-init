@@ -18,7 +18,7 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "lib",
+    "outDir": "./dist",
     "preserveConstEnums": true,
     "pretty": true,
     "removeComments": false,
@@ -27,10 +27,9 @@
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ESNext",
+    "target": "es5",
     "typeRoots": [
       "node_modules/@types",
-      "global.d.ts"
     ],
     "paths": {
       "~/*": ["src/*"],
