@@ -12,8 +12,9 @@ const { resolve } = path;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // 开发环境服务器
 // const WebpackDevServer = require("webpack-dev-server");
+
 // 每次打包时，删除上次打包的残留文件，保证打出的包整洁
-// const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 // 提取css成单独文件
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -21,6 +22,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // 压缩css
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
+// eslint 语法检查
 // const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
@@ -30,6 +32,7 @@ module.exports = {
   output: {
     path: resolve(__dirname, "dist"),
     filename: "js/dist.js",
+    // filename: "dist.js",
   },
   // 模式
   // mode: "production",
@@ -37,22 +40,25 @@ module.exports = {
 
   // 插件 -- 压缩文件
   plugins: [
-    // 处理html资源
-    // 默认会创建一个html, 自动引入打包输出的所有资源(js, css)
-    // 复制src下面的index.html
+    /**
+     * 处理html资源
+     * 默认会创建一个html, 自动引入打包输出的所有资源(js, css)
+     * 复制src下面的index.html
+     */
     new HtmlWebpackPlugin({
       template: path.join("./src", "index.html"),
       filename: "index.html",
     }),
-    // new CleanWebpackPlugin({
-    //   pathsToClean: ["dist"],
-    //   cleanOptions: {
-    //     root: path.resolve(__dirname),
-    //     // exclude: ['shared.js'],
-    //     verbose: true,
-    //     dry: false,
-    //   },
-    // }),
+
+    new CleanWebpackPlugin({
+      pathsToClean: ["dist"],
+      cleanOptions: {
+        root: path.resolve(__dirname),
+        // exclude: ['shared.js'],
+        verbose: true,
+        dry: false,
+      },
+    }),
     // 提取css成单独文件
     new MiniCssExtractPlugin({
       filename: "css/dist.css",
@@ -161,7 +167,7 @@ module.exports = {
 
       /**
        * webpack5不支持
-       * eslint 配置 -- 语法检查 eslint-loader eslint
+       * eslint 配置 - 语法检查 eslint-loader eslint
        * 只检查自己写的源代码，第三方的库是不是检查的
        * 配置检查规则:
        * package.json中eslintConfig中设置
@@ -172,6 +178,19 @@ module.exports = {
       //   exclude: /node_modules/,
       //   loader: "eslint-loader",
       //   options: {},
+      // },
+
+      /**
+       * js兼容性处理 - @bable/core bable-loader @bable/preset-env
+       */
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: "bable-loader",
+      //   options: {
+      //     // 预设：指示bable做怎样的兼容性处理
+      //     presets: ["@bable/preset-env"],
+      //   },
       // },
     ],
   },
