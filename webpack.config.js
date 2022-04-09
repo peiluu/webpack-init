@@ -25,6 +25,11 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // eslint 语法检查
 // const ESLintPlugin = require("eslint-webpack-plugin");
 
+/**
+ * @description webpack配置遵循CommonJS模块化语法
+ * require命令用于加载模块文件。require命令的基本功能是，读入并执行一个JavaScript文件
+ * 然后返回该模块的exports对象。如果没有发现指定模块，会报错。
+ */
 module.exports = {
   // 入口
   entry: "./src/index.js",
@@ -138,8 +143,8 @@ module.exports = {
           // 对生成的base64图片进行重命名，hash值只取10位，加上原本的文件名后缀
           name: "[hash:10].[ext]",
 
-          // 问题：因为url-loader默认使用es6模块化去解析，而html-loader引入图片是common.js 模块化，解析会出现问题
-          // 解决：关闭url-loader的es6模块化，使用common.js解析
+          // 问题：因为url-loader默认使用es6模块化去解析，而html-loader引入图片是CommonJS 模块化，解析会出现问题
+          // 解决：关闭url-loader的es6模块化，使用CommonJS解析
           // esMoudle: false,
           // 自定义输出路径
           outputPath: "imgs",

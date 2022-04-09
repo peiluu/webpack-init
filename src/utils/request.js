@@ -1,4 +1,9 @@
+/**
+ * 日常使用es6模块化语法;
+ * ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。
+ */
 import queryString from "query-string";
+
 // import * as CONSTANT from "@/config/constant";
 
 /**
@@ -15,7 +20,7 @@ export function jsonToQueryString(json = {}) {
  */
 const request = async (url, options) => {
   console.log(window);
-  // 等待网络响应需要await一下
+  // 等待网络响应需要await一下 - 异步响应
   const response = await fetch(
     `${url}${url.indexOf("?") > 0 ? "&" : "?"}dev_ver=${window.SYSTEM_VERSION}`,
     {
@@ -57,6 +62,10 @@ const request = async (url, options) => {
     // }
   }
   console.log(data);
+
+  if (data.code !== 0);
+  alert(data.msg);
+
   return { data };
 };
 
