@@ -9,6 +9,7 @@ import { post, get } from "@/utils/request";
 import "./index.less";
 
 // const y = (a, b) => {
+
 //   return a + b;
 // };
 
@@ -17,5 +18,4 @@ import "./index.less";
 post("/api/operator/gethislist");
 get("/api/operator/gethislist");
 
-// console.log(utils.getCode());
 console.log(getCode());

@@ -10,10 +10,18 @@ const path = require("path");
 const { resolve } = path;
 // html编译
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//
+// 开发环境服务器
 // const WebpackDevServer = require("webpack-dev-server");
 // 每次打包时，删除上次打包的残留文件，保证打出的包整洁
 // const CleanWebpackPlugin = require("clean-webpack-plugin");
+
+// 提取css成单独文件
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+// 压缩css
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+// const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
   // 入口
@@ -27,7 +35,7 @@ module.exports = {
   // mode: "production",
   mode: "development",
 
-  // 插件
+  // 插件 -- 压缩文件
   plugins: [
     // 处理html资源
     // 默认会创建一个html, 自动引入打包输出的所有资源(js, css)
@@ -44,6 +52,20 @@ module.exports = {
     //     verbose: true,
     //     dry: false,
     //   },
+    // }),
+    // 提取css成单独文件
+    new MiniCssExtractPlugin({
+      filename: "css/dist.css",
+    }),
+    // 压缩css
+    new OptimizeCssAssetsPlugin(),
+
+    // eslint语法检查 - webpack5支持
+    // new ESLintPlugin({
+    //   // extensions: ["js"],
+    //   // context: resolve("src"),
+    //   // exclude: "/node_modules",
+    //   // fix: true
     // }),
   ],
 
@@ -65,12 +87,37 @@ module.exports = {
 
   // 模块
   module: {
-    // loader配置, 处理webpack不识别的资源（样式、图片）
+    // loader配置, 处理webpack不识别的资源（样式、图片）、 兼容性处理
     rules: [
       // 处理less资源, use（多个loader）中的执行顺序 -- 从下到上
       // css-loader把样式文件打到js文件中，
-      { test: /\.less$/, use: ["style-loader", "css-loader", "less-loader"] },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      // { test: /\.less$/, use: ["style-loader", "css-loader", "less-loader"] },
+
+      // MiniCssExtractPlugin.loader取代style-loader, 提取css单独成文件
+      {
+        test: /\.less$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+      },
+
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          // MiniCssExtractPlugin.loader
+          "css-loader",
+          {
+            // 压缩css
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: () => [
+                // postcss的插件
+                // require("postcss-preset-env")(),
+              ],
+            },
+          },
+        ],
+      },
       { test: /\.ts$/, use: ["ts-loader"] },
 
       {
@@ -87,7 +134,7 @@ module.exports = {
 
           // 问题：因为url-loader默认使用es6模块化去解析，而html-loader引入图片是common.js 模块化，解析会出现问题
           // 解决：关闭url-loader的es6模块化，使用common.js解析
-          esMoudle: false,
+          // esMoudle: false,
           // 自定义输出路径
           outputPath: "imgs",
         },
@@ -111,6 +158,21 @@ module.exports = {
           },
         },
       },
+
+      /**
+       * webpack5不支持
+       * eslint 配置 -- 语法检查 eslint-loader eslint
+       * 只检查自己写的源代码，第三方的库是不是检查的
+       * 配置检查规则:
+       * package.json中eslintConfig中设置
+       * airbnb --> eslint-config-airbnb-base eslint-plugin-import eslint
+       */
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: "eslint-loader",
+      //   options: {},
+      // },
     ],
   },
 
@@ -121,6 +183,7 @@ module.exports = {
     // 路径
     // contentBase: resolve(__dirname + 'dist'),
     // 启用gzip压缩
+
     compress: true,
     host: "localhost",
     port: 8000,
