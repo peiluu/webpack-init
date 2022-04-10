@@ -171,7 +171,7 @@ module.exports = {
       },
 
       /**
-       * webpack5不支持
+       * webpack5不支持eslint-loader
        * eslint 配置 - 语法检查 eslint-loader eslint
        * 只检查自己写的源代码，第三方的库是不是检查的
        * 配置检查规则:

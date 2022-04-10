@@ -1,17 +1,58 @@
 import { post, get } from "@/utils/request";
-
 import "./index.less";
 
-import { setCode } from "@/utils/utils";
+const getPostData = async () => {
+  const responseData = await post(
+    "/api/operator/gethislist",
+    { hisId: 99991 },
+    { hideError: true }
+  );
 
-const utils = require("@/utils/utils");
+  console.log("responseData", responseData);
+};
 
-const request = require("@/utils/request");
+const ExtPromise = () => {
+  console.log("定时器");
+};
+// ExtPromise();
+getPostData();
 
-post("/api/operator/gethislist", {});
+const print = (time, msg) => {
+  return new Promise(() => {
+    setTimeout(() => {
+      // console.log(msg);
+    }, time);
+  });
+};
 
-utils.getCode();
+print(100, "First")
+  .then((res) => {
+    console.log(res);
+    return print(4000, "Second");
+  })
+  .then((res) => {
+    console.log(res);
+    return print(3000, "Third");
+  });
 
-request.get();
+// ExtAwait();
+// console.log(222);
 
-setCode();
+const testAwait = () => {
+  const responseData = new Promise((resolve, reject) => {
+    console.log(
+      1111111111111,
+      resolve(
+        post("/api/operator/gethislist", { hisId: 99991 }, { hideError: true })
+      )
+    );
+    resolve(
+      post("/api/operator/gethislist", { hisId: 99991 }, { hideError: true })
+    );
+  }).then((data) => {
+    console.log(data);
+  });
+
+  console.log("responseData", responseData);
+};
+// testAwait();
