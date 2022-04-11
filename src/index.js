@@ -57,4 +57,5 @@ const testAwait = () => {
 };
 // testAwait();
 
+// stash 相比于add 和commit多了选择的深度，可以多存储几次stash
 const add = () => {};
