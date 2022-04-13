@@ -21,6 +21,7 @@ const request3 = (url, options, config = { hideError: false }) => {
         return response.json();
       }
     })
+
     // fetch 在第二个then方法中才能获取后台返回的数据
     .then((json) => {
       console.log("json", json);
@@ -52,7 +53,7 @@ const request = (url, options, config = { hideError: false }) => {
     fetch(url, { ...options })
       .then((response) => {
         // console.log("response", response);
-        reject(1);
+        reject();
         // fetch - http响应成功
         // reject(1);
         // if (response.status >= 200 && response.status < 300) {
