@@ -26,7 +26,7 @@ module.exports = {
   },
   // eslint规则
   rules: {
-    semi: [2, "always"],
+    semi: [2, "always"], // 缩进字符串
     "import/no-unassigned-import": 0,
     "no-console": 0,
     "no-unused-vars": 0,
@@ -38,14 +38,15 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": 0,
     "no-use-before-define": 0,
     "@typescript-eslint/no-use-before-define": [2],
+    // 配置引入拓展名
     "import/extensions": [
       2,
       "ignorePackages",
       {
-        js: "never",
-        jsx: "never",
-        ts: "never",
-        tsx: "never",
+        // js: "never",
+        // jsx: "never",
+        // ts: "never",
+        // tsx: "never",
       },
     ],
 
