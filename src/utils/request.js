@@ -1,4 +1,4 @@
-import { jsonToQueryString } from "@/utils/utils";
+import { jsonToQueryString } from "@/utils/utils.ts";
 
 /**
  * 日常使用es6模块化语法 - export/import
@@ -15,6 +15,7 @@ import { jsonToQueryString } from "@/utils/utils";
 const request3 = (url, options, config = { hideError: false }) => {
   const data = fetch(url)
     .then((response) => {
+      w;
       // return response;
       // 第一then获取一个response留
       if (response.status >= 200 && response.status < 300) {
@@ -43,6 +44,7 @@ const request3 = (url, options, config = { hideError: false }) => {
  * @param options 请求参数及方法
  * @param config 其余配置项
  */
+
 const request = (url, options, config = { hideError: false }) => {
   /**
    * Promise 是一种更良好的编程风格，将嵌套格式(回调函数)的代码变成了顺序格式的代码（.then）

@@ -8,7 +8,13 @@ const getPostData = async () => {
     { hideError: true }
   );
 
-  console.log("responseData", responseData);
+  // console.log("responseData", responseData);
 };
 
-getPostData();
+// getPostData();
+
+const {
+  level1: { a, ...other },
+} = { level1: { a: 1, b: 2 } };
+// console.log(`a===${a}`);
+// console.log(other);

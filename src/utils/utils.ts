@@ -4,10 +4,10 @@ import queryString from "query-string";
  */
 
 export const getCode = () => {
-  console.log("调用一次getCode函数");
+  // console.log("调用一次getCode函数");
 };
 export const setCode = () => {
-  console.log("调用一次setCode函数");
+  // console.log("调用一次setCode函数");
 };
 /**
  * 对象转键值对

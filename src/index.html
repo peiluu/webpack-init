@@ -16,6 +16,55 @@
       window.SYSTEM_VERSION = system_varsion;
     })();
   </script>
+  <script>
+    const request = async ()=> {
+      const response = await fetch('http://localhost:8001/index.js');
+      let data = {};
+      console.log("response", response);
+      // Failed to execute 'json' on 'Response': body stream already read 返回的体流只能被读取一次
+      // console.log("response.json()", response.json());
+      // 请求成功
+      if (response.status >= 200 && response.status < 300) {
+        try {
+          /**
+           * json()方法接收一个 Response 流，并将其读取完成，返回一个 JSON格式的对象。
+           * json() - 也是异步方法的，需要await一下，取代从then里面取数据
+           * 返回结果体内的数据
+           */
+          data = await response.json();
+        } catch (e) {
+          console.log(e);
+          data = {
+            code: 1001,
+            msg: "Syntax Error in Response Data",
+          };
+        }
+      } else {
+        data = {
+          code: 1000,
+          msg: response.statusText,
+        };
+      }
+
+      if (data.code === 999) {
+        // // to authority
+        // data = await authority("/api/authority");
+        // if (data.code === 0) {
+        //   window.sessionStorage.setItem("oper", data.data.userName);
+        //   return request(url, options);
+        // }
+      }
+
+      if (data.code !== 0 && !config.hideError) {
+        alert(data.msg);
+      }
+
+      return data;
+    };
+  window.onload = () => {
+    request();
+  }
+  </script>
   <img src="./images/home.png">
   <h1 class="h1">这是一个标题<h1>
 </body>

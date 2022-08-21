@@ -7,6 +7,7 @@
 
 const path = require("path");
 
+// const { resolve } = path;
 const { resolve } = path;
 // html编译
 const HtmlWebpackPlugin = require("html-webpack-plugin");
